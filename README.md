@@ -5,5 +5,5 @@
 # SUBMISSION
 
 1. PASTE YOUR DEMO VIDEO LINK HERE
-2. PASTE A LINK TO YOUR PRODUCTION DEPLOYMENT HERE
+2. https://afterquery-szybowskijan-szybowskijans-projects.vercel.app/admin
 3. MAKE SURE TO FILL OUT .ENV.EXAMPLE
