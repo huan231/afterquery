@@ -1,0 +1,18 @@
+{
+  "name": "@afterquery/database",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "drizzle-orm": "0.44.7",
+    "postgres": "3.4.7",
+    "drizzle-kit": "0.31.6"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit && eslint .",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate"
+  }
+}

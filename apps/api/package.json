@@ -1,0 +1,27 @@
+{
+  "name": "@afterquery/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node -r dotenv/config --experimental-strip-types --watch src/index.ts",
+    "lint": "tsc --noEmit && eslint .",
+    "start": "node --experimental-strip-types src/index.ts"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "probot": "14.2.1",
+    "octokit": "5.0.4",
+    "@afterquery/database": "*",
+    "simple-git": "3.28.0",
+    "http-proxy-middleware": "3.0.5",
+    "resend": "6.3.0",
+    "@tsconfig/node22": "22.0.1",
+    "@types/express": "5.0.5",
+    "@types/node": "22.13.14",
+    "drizzle-orm": "0.44.7",
+    "postgres": "3.4.7",
+    "drizzle-kit": "0.31.6",
+    "dotenv": "16.4.7"
+  }
+}
