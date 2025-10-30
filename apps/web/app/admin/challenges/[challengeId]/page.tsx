@@ -27,16 +27,18 @@ export default async function ChallengePage({ params }: { params: Promise<{ chal
 
   const challenge = await fetchChallenge(challengeId);
 
+  const hash = crypto.randomUUID();
+
   async function createAssignment(formData: FormData) {
     'use server';
 
     const data = {
       candidateEmail: formData.get('candidateEmail'),
-      hash: crypto.randomUUID(),
-      challengeId,
+      hash: formData.get('hash'),
+      challengeId: formData.get('challengeId'),
     };
 
-    await fetch(`http://localhost:4000/assignments`, {
+    await fetch(`${process.env.PUBLIC_API_URL!}/assignments`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -85,6 +87,8 @@ export default async function ChallengePage({ params }: { params: Promise<{ chal
                 placeholder="szybowski.jan@gmail.com"
                 defaultValue="szybowski.jan@gmail.com"
               />
+              <input type="hidden" name="hash" value={hash} />
+              <input type="hidden" name="challengeId" value={challengeId} />
             </Field>
             <Field>
               <Button type="submit">Create</Button>

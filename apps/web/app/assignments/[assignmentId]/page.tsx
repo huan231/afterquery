@@ -23,10 +23,12 @@ export default async function AssignmentPage({ params }: { params: Promise<{ ass
   const assignment = await fetchAssignment(assignmentId);
   const challenge = await fetchChallenge(assignment.challengeId);
 
-  async function startAssignment() {
+  async function startAssignment(formData: FormData) {
     'use server';
 
-    await fetch(`http://localhost:4000/assignments/${assignmentId}/start`, {
+    const assignmentId = formData.get('assignmentId');
+
+    await fetch(`${process.env.PUBLIC_API_URL!}/assignments/${assignmentId}/start`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -36,10 +38,12 @@ export default async function AssignmentPage({ params }: { params: Promise<{ ass
     redirect(`/assignments/${assignmentId}`);
   }
 
-  async function completeAssignment() {
+  async function completeAssignment(formData: FormData) {
     'use server';
 
-    await fetch(`http://localhost:4000/assignments/${assignmentId}/complete`, {
+    const assignmentId = formData.get('assignmentId');
+
+    await fetch(`${process.env.PUBLIC_API_URL!}/assignments/${assignmentId}/complete`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -60,6 +64,7 @@ export default async function AssignmentPage({ params }: { params: Promise<{ ass
             </CardHeader>
             <CardContent>
               <form action={startAssignment}>
+                <input type="hidden" name="assignmentId" value={assignmentId} />
                 <FieldGroup>
                   <Button type="submit">Start</Button>
                 </FieldGroup>
@@ -87,6 +92,7 @@ export default async function AssignmentPage({ params }: { params: Promise<{ ass
             </code>
 
             <form action={completeAssignment}>
+              <input type="hidden" name="assignmentId" value={assignmentId} />
               <FieldGroup>
                 <Button type="submit">Complete</Button>
               </FieldGroup>
